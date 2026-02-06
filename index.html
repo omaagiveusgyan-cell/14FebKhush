@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Valentine?</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+	   background-image: url("bg.jpg");   /* your image */
+    background-size: cover;           /* fill screen */
+    background-position: center;      /* center image */
+    background-repeat: no-repeat;     /* no repeat */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+  }
+
+  .box {
+    text-align: center;
+    background: rgba(255,255,255,0.7);
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+    z-index: 2;
+  }
+
+  h1 {
+    margin-bottom: 30px;
+  }
+
+  button {
+    font-size: 20px;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+
+  #yes {
+    background: #e63946;
+    color: white;
+  }
+
+  #no {
+    background: #ccc;
+    position: absolute;
+  }
+
+  .heart {
+    position: absolute;
+    color: red;
+    font-size: 20px;
+    animation: float 6s linear infinite;
+    opacity: 0.7;
+  }
+
+  @keyframes float {
+    from {
+      transform: translateY(100vh) scale(1);
+    }
+    to {
+      transform: translateY(-10vh) scale(1.5);
+    }
+  }
+</style>
+</head>
+
+<body>
+
+<div class="box">
+  <h1>Please,<br>will you be my Valentine? ❤️</h1>
+  <button id="yes">YES</button>
+  <button id="no">NO</button>
+</div>
+
+<!-- Background music -->
+<audio id="music" loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
+</audio>
+
+<script>
+  const noBtn = document.getElementById("no");
+  const yesBtn = document.getElementById("yes");
+  const music = document.getElementById("music");
+
+  let scale = 1;
+
+  // Start music on first interaction
+  document.body.addEventListener("click", () => {
+    music.play();
+  }, { once: true });
+
+  // NO button escape + shrink
+  function moveNo() {
+    scale -= 0.1;
+    if (scale < 0.3) scale = 0.3;
+
+    const x = Math.random() * (window.innerWidth - 100);
+    const y = Math.random() * (window.innerHeight - 50);
+
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+    noBtn.style.transform = `scale(${scale})`;
+  }
+
+  noBtn.addEventListener("mouseover", moveNo);
+  noBtn.addEventListener("touchstart", moveNo);
+
+  // YES click
+  yesBtn.addEventListener("click", () => {
+    window.location.href = "yes.html";
+  });
+
+  // Floating hearts
+  setInterval(() => {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = Math.random() * 20 + 15 + "px";
+    heart.style.animationDuration = Math.random() * 3 + 4 + "s";
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 7000);
+  }, 300);
+</script>
+
+</body>
+</html>
