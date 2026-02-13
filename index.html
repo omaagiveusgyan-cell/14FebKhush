@@ -100,16 +100,25 @@
   }, { once: true });
 
   function moveNo() {
-    // Move NO button randomly
-    const x = Math.random() * (window.innerWidth - 100);
-    const y = Math.random() * (window.innerHeight - 50);
+   function moveNo() {
+  const box = document.querySelector(".box");
+  const boxRect = box.getBoundingClientRect();
 
-    noBtn.style.left = x + "px";
-    noBtn.style.top = y + "px";
+  const btnWidth = noBtn.offsetWidth;
+  const btnHeight = noBtn.offsetHeight;
 
-    // Increase YES button size
-    yesScale += 0.2;
-    yesBtn.style.transform = `scale(${yesScale})`;
+  const maxX = box.clientWidth - btnWidth;
+  const maxY = box.clientHeight - btnHeight;
+
+  const x = Math.random() * maxX;
+  const y = Math.random() * maxY;
+
+  noBtn.style.left = x + "px";
+  noBtn.style.top = y + "px";
+
+  // Increase YES size
+  yesScale += 0.2;
+  yesBtn.style.transform = `scale(${yesScale})`;
   }
 
   noBtn.addEventListener("mouseover", moveNo);
@@ -135,4 +144,5 @@
 
 </body>
 </html>
+
 
