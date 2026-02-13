@@ -8,45 +8,52 @@
 <style>
   body {
     margin: 0;
-    height: 100vh;
-    background: radial-gradient(circle, #ff758f, #ff4d6d);
+    min-height: 100vh;
+    background: linear-gradient(to bottom, #ff4d6d, #ff758f);
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
+    align-items: center;
     font-family: Arial, sans-serif;
-    color: white;
-    overflow: hidden;
+    overflow-x: hidden;
   }
 
-	.box {
+  /* Message Box */
+  .box {
+    width: 85%;
+    max-width: 900px;
+    background: #f6c1c8;
+    margin-top: 60px;
+    padding: 60px 40px;
     text-align: center;
-    background: rgba(255,255,255,0.7);
-    padding: 40px;
-    border-radius: 16px;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.25);
-    z-index: 2;
-    position: relative;
-  }
-	
-  h1 {
-    margin-bottom: 100px;
-	
+    border-radius: 4px;
   }
 
-  img {
-    max-width: 400x;
-    border-radius: 16px;
-    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+  .box h1 {
+    color: white;
+    font-size: 32px;
+    line-height: 1.6;
+    font-weight: bold;
   }
 
+  /* Image Section */
+  .image-container {
+    margin: 40px 0 80px;
+    width: 85%;
+    max-width: 900px;
+  }
+
+  .image-container img {
+    width: 100%;
+    display: block;
+  }
+
+  /* Confetti */
   .confetti {
-    position: absolute;
-	top: -10px;
+    position: fixed;
+    top: -10px;
     width: 8px;
     height: 8px;
-    background: white;
-    animation: fall 3s linear infinite;
+    animation: fall linear infinite;
   }
 
   @keyframes fall {
@@ -61,13 +68,21 @@
 </head>
 
 <body>
-<div class="box">
 
-<h1>❤️Yahooooo!❤️<br>You made my day! I’m grateful for you every day—for your love, your smile, and the way you make my life feel complete. <br> Loving you is my greatest blessing. 💖</h1>
-<img src="aaa.gif" alt="gif">
+<div class="box">
+  <h1>
+    ❤️ Yahooooo! ❤️ <br>
+    I’m grateful for you every day—for your love, your smile,
+    and the way you make my life feel complete.💖
+  </h1>
+</div>
+
+<div class="image-container">
+  <img src="aaa.gif" alt="Celebration">
+</div>
 
 <audio autoplay>
-  <source src="https://prodigits.co.uk/pcontent/mp3tones/tone/2020/bollywood/preview/c9c71a405025495.mp3">
+  <source src="https://prodigits.co.uk/pcontent/mp3tones/tone/2020/bollywood/preview/c9c71a405025495.mp3" type="audio/mp3">
 </audio>
 
 <script>
@@ -77,23 +92,16 @@
     confetti.style.left = Math.random() * 100 + "vw";
     confetti.style.background =
       `hsl(${Math.random() * 360}, 100%, 70%)`;
-    confetti.style.animationDuration = Math.random() * 2 + 2 + "s";
+    confetti.style.animationDuration =
+      Math.random() * 3 + 2 + "s";
+
     document.body.appendChild(confetti);
 
-    setTimeout(() => confetti.remove(), 4000);
+    setTimeout(() => {
+      confetti.remove();
+    }, 5000);
   }, 150);
 </script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
